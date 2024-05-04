@@ -1,13 +1,13 @@
+"""
+Dumps the final dictionary used by poly2mono.py into a JSON.
+"""
+
 import json
 import os
 from typing import Dict
 
 from monosyllables import create_dictionary_monosyllables
 from remove_spirits import create_dictionary_spirits
-
-"""
-Dumps the final dictionary into a JSON 
-"""
 
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))

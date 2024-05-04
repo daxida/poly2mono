@@ -1,3 +1,7 @@
+"""
+Remove accents from monosyllables.
+"""
+
 from remove_accents import remove_accents
 from typing import List, Dict
 
@@ -43,7 +47,7 @@ VERBS = [
     "δώ", "δεί",
     "φά", "φάν", 
     "πάς", "πά",
-    "πώ", "πής", 'πούν', 'πές', 'πέ', 'πή',
+    "πώ", "πής", 'πούν', 'πές', 'πέ', 'πή', 'πείς',
     'μπής', 'μπή',
     'μπάς',
     'κλαίς', 
@@ -96,6 +100,7 @@ ANCIENT = [
 ]
 
 OTHERS = [
+    'πιό', 'πιά',
     'πάν', 'κάν',
     'μιά', 'μιάς',
     'ώ', 'ώς',
