@@ -1,5 +1,6 @@
-import re
+from typing import Dict
 
+# fmt: off
 '''
 Removes spirits from a string
 
@@ -25,25 +26,26 @@ OMICRON = {"ο":"ὀὁ",      "ό":"ὂὃὄὅὸό"}
 RHO     = {"ρ":"ῥῤ"}
 YPSILON = {"υ":"ὑῠῡὐ",    "ύ":"ὓὕὗὺύὒὔὖῦῢΰῧ"}
 OMEGA   = {"ω":"ὠὡῳᾠᾡ",   "ώ":"ὢὣὤὥὦὧὼώῶῲῴᾢᾣᾤᾥᾦᾧῷ"}
+# fmt: on
 
 ALL = [ALPHA, EPSILON, ETA, IOTA, OMICRON, RHO, YPSILON, OMEGA]
 
 
-def inverted(dictionary):
+def inverted(dictionary: Dict[str, str]) -> Dict[str, str]:
     return {ch: k for k, v in dictionary.items() for ch in v}
 
 
-def CAPS_dict(dictionary):
+def CAPS_dict(dictionary: Dict[str, str]) -> Dict[str, str]:
     return {k.upper(): v.upper() for k, v in dictionary.items()}
 
 
-def create_dictionary_spirits():
-    # We initialize the dict with a couple words 
+def create_dictionary_spirits() -> Dict[str, str]:
+    # We initialize the dict with a couple words
     # that don't fit the logic but have a high priority:
-    #   πῶς->πώς, πὼς->πως 
-    #   ποῦ->πού, ποὺ->που 
+    #   πῶς->πώς, πὼς->πως
+    #   ποῦ->πού, ποὺ->που
 
-    final_dictionary = {
+    final_dictionary: Dict[str, str] = {
         "\\bπὼς\\b": "πως",
         "\\bποὺ\\b": "που",
     }
@@ -53,14 +55,14 @@ def create_dictionary_spirits():
         final_dictionary.update(letter_dictionary)
         final_dictionary.update(CAPS_dict(letter_dictionary))
 
-    '''
+    """
     Fixes the ambiguity of ᾘ
 
     Because of this:
         print("ᾘ".lower() == "ᾐ") # True
         print("ᾘ" == "ᾐ".upper()) # False
         print("ᾐ".upper())        # ἨΙ
-    '''
+    """
 
     FIXES = {"ᾘ": "Η"}
 
@@ -68,7 +70,8 @@ def create_dictionary_spirits():
 
     return final_dictionary
 
-'''
+
+"""
 def quick_test():
     def translate(dictionary, text):
         for k, v in dictionary.items():
@@ -86,4 +89,4 @@ def quick_test():
     print("Passed the test!")
 
 quick_test()
-'''
+"""

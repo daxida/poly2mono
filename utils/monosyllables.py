@@ -1,6 +1,7 @@
-import re
 from remove_accents import remove_accents
+from typing import List, Dict
 
+# fmt: off
 '''
 References:
     https://www.lexilogia.gr/threads/Πάρ-το-ή-παρ-το-ο-τόνος-διατηρείται-ή-όχι.4207/
@@ -148,30 +149,34 @@ ALL = [
     SIGMA_START,
     TAU_START
 ]
+# fmt: on
 
 
-def to_regex(string):
+def to_regex(string: str):
     # Replaces string iif string is a word (and not a part of another word)
     return rf"\b{string}\b"
 
 
-def CAPS(string):
+def CAPS(string: str) -> str:
     return string[0].upper() + string[1:]
 
 
-def create_dictionary_monosyllables():
-    monosyllables = dict()
+def create_dictionary_monosyllables() -> Dict[str, str]:
+    monosyllables: Dict[str, str] = dict()
 
-    all_words = []
+    all_words: List[str] = []
     for list_words in ALL:
         all_words.extend(list_words)
 
     monosyllables.update({to_regex(k): remove_accents(k) for k in all_words})
-    monosyllables.update({to_regex(CAPS(k)): CAPS(remove_accents(k)) for k in all_words})
+    monosyllables.update(
+        {to_regex(CAPS(k)): CAPS(remove_accents(k)) for k in all_words}
+    )
 
     return monosyllables
 
-'''
+
+"""
 def quick_test():
     def translate(dictionary, text):
         for k, v in dictionary.items():
@@ -191,4 +196,4 @@ def quick_test():
 
 
 quick_test()
-'''
+"""

@@ -1,18 +1,22 @@
-import unittest
 import re
+import unittest
+from functools import partialmethod
+from typing import Iterator, List, Tuple
+
 from poly2mono import poly2mono
 from utils.remove_accents import remove_accents, remove_accents_and_marks
-from functools import partialmethod
+
+Pairs = List[Iterator[Tuple[str, str]]]
 
 
-def init_tests():
-    pairs = []
+def init_tests() -> Pairs:
+    pairs: Pairs = []
     for i in range(10):
         try:
             path = f"tests/{i:02g}_"
-            with open(f"{path}poly.txt", "r", encoding='utf-8') as source:
+            with open(f"{path}poly.txt", "r", encoding="utf-8") as source:
                 poly = source.readlines()
-            with open(f"{path}mono.txt", "r", encoding='utf-8') as expected:
+            with open(f"{path}mono.txt", "r", encoding="utf-8") as expected:
                 mono = expected.readlines()
             pairs.append(zip(poly, mono))
         except FileNotFoundError:
@@ -24,16 +28,16 @@ def init_tests():
 tests_pairs = init_tests()
 
 
-def remove_ponctuation(line):
+def remove_ponctuation(line: str) -> str:
     return re.sub(r"['᾿]", "", line)
 
 
-def test_builder(self, idx):
-    ''' Compares sentence by sentence for easier visualization '''
+def test_builder(self, idx: int) -> None:
+    """Compares sentence by sentence for easier visualization"""
     for source, expected in tests_pairs[idx]:
         lines = zip(source.split("."), expected.split("."))
         for source_line, expected_line in lines:
-            source_line   = remove_ponctuation(source_line).strip()
+            source_line = remove_ponctuation(source_line).strip()
             expected_line = remove_ponctuation(expected_line).strip()
 
             result = poly2mono(source_line)
@@ -41,13 +45,13 @@ def test_builder(self, idx):
 
 
 class TestPoly(unittest.TestCase):
-
     maxDiff = None
     amount_tests = len(tests_pairs)
 
     # This makes so each pair counts as a separate test
     for n in range(amount_tests):
-        locals()[f'test_{n}'] = partialmethod(test_builder, idx=n)
+        locals()[f"test_{n}"] = partialmethod(test_builder, idx=n)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -1,35 +1,36 @@
 import re
 
-'''
+"""
 Just a bunch of utility functions. 
 Only "remove_accents" and "remove_accents_and_marks" are used.
-'''
+"""
 
-def remove_accents(string):
+
+def remove_accents(string: str) -> str:
     for k, v in dict(zip("άέίόύήώ", "αειουηω")).items():
         string = re.sub(k, v, string)
     return string
 
 
-def remove_accents_and_marks(string):
+def remove_accents_and_marks(string: str) -> str:
     for k, v in dict(zip("άέίϊόύϋήώ", "αειιουυηω")).items():
         string = re.sub(k, v, string)
     return string
 
 
-def has_acute_accent(word):
+def has_acute_accent(word: str):
     return re.search(r"[άέήίόύώ]", word)
 
 
-def has_grave_accent(word):
+def has_grave_accent(word: str):
     return re.search(r"[ὰὲὴὶὸὺὼ]", word)
 
 
-def has_accent(word):
+def has_accent(word: str):
     return re.search(r"[άέήίόύώὰὲὴὶὸὺὼ]", word)
 
 
-def has_long_spirit(word):
+def has_long_spirit(word: str):
     # δὲν εὗρέ που
     # ἆρά γε
     # τὰ ὦτά του
@@ -39,7 +40,7 @@ def has_long_spirit(word):
     return re.search(r"[ᾶἆῆἦῖἶἷῦὗῶὦ]", word)
 
 
-def is_double_accents_case(word):
+def is_double_accents_case(word: str):
     return has_long_spirit(word) and has_accent(word)
 
 
@@ -57,16 +58,16 @@ def my_replace(match):
     return match
 
 
-def fix_double_accents(text):
-    ''' 
-               χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της, 
+def fix_double_accents(text: str) -> str:
+    """
+               χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της,
     --> (here) χεῖρας του, ὑπῆρξε ποτε, χρῶτα της
     --> (main) χείρας του, υπήρξε ποτε, χρώτα της,
 
-    It does make sense to allow them for certain pairs like 
+    It does make sense to allow them for certain pairs like
         - εἶδά ποτε or ἦτό ποτε
-    '''
-    return re.sub(r'\w+ (?!ποτε)', my_replace, text)
+    """
+    return re.sub(r"\w+ (?!ποτε)", my_replace, text)
 
 
 # print(fix_double_accents("Ἄδμηθ, ὁρᾷς γὰρ τἀμὰ πράγμαθ ὡς ἔχει,"))
