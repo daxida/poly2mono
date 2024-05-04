@@ -14,7 +14,7 @@ Requires tkinter so you may have to `pip install tk`.
 - `python3 test.py` for the unittests.
 - `python3 utils/create_dictionary.py` to update the current dictionary.
 
-<img src="https://github.com/daxida/poly2mono/blob/master/example.png" style="width: 50%; height: 50%">
+<img src="https://github.com/daxida/poly2mono/blob/master/others/example.png" style="width: 50%; height: 50%">
           
 ## Logic
 
