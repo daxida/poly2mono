@@ -7,11 +7,11 @@ from poly2mono import poly2mono
 # Tkinter interface for converting polytonic to monotonic
 
 
-class myFrame(ttk.Frame):
+class MyFrame(ttk.Frame):
     def __init__(self, main_window: Tk = tk.Tk()):
         super().__init__(main_window)
         ttk.Frame(main_window, padding=10)
-        main_window.title("Polytonic to monotonic converter")
+        main_window.title("Polytonic to Monotonic Converter")
         main_window.geometry("600x800")
 
         self.place(x=0, y=0, width=600, height=800)
@@ -39,17 +39,25 @@ class myFrame(ttk.Frame):
         self.output = Text(self, width=80, height=20)
         self.output.pack(pady=5)
         self.output.insert("1.0", self.output_text)
+
+        self.check_for_interrupt()
         self.mainloop()
 
         print("Finish.")
 
     def action(self):
-        self.input_text = self.input.get("0.0", "end")
+        self.input_text = self.input.get("1.0", "end-1c")
         self.output_text = poly2mono(self.input_text)
 
         self.output.delete("1.0", "end")
         self.output.insert("1.0", self.output_text)
 
+    def check_for_interrupt(self):
+        try:
+            self.after(ms=100, func=self.check_for_interrupt)
+        except KeyboardInterrupt:
+            self.quit()
+
 
 if __name__ == "__main__":
-    myFrame().run()
+    MyFrame().run()
