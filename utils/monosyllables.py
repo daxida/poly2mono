@@ -2,8 +2,9 @@
 Remove accents from monosyllables.
 """
 
+from typing import Dict, List
+
 from remove_accents import remove_accents
-from typing import List, Dict
 
 # fmt: off
 '''

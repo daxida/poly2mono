@@ -1,10 +1,8 @@
-import re
 import unittest
 from functools import partialmethod
 from typing import Iterator, List, Tuple
 
 from poly2mono import poly2mono
-from utils.remove_accents import remove_accents, remove_accents_and_marks
 
 Pairs = List[Iterator[Tuple[str, str]]]
 
@@ -28,18 +26,11 @@ def init_tests() -> Pairs:
 tests_pairs = init_tests()
 
 
-def remove_ponctuation(line: str) -> str:
-    return re.sub(r"['᾿]", "", line)
-
-
-def test_builder(self, idx: int) -> None:
+def test_builder(self, test: Tuple[str, str]) -> None:
     """Compares sentence by sentence for easier visualization"""
-    for source, expected in tests_pairs[idx]:
+    for source, expected in test:
         lines = zip(source.split("."), expected.split("."))
         for source_line, expected_line in lines:
-            source_line = remove_ponctuation(source_line).strip()
-            expected_line = remove_ponctuation(expected_line).strip()
-
             result = poly2mono(source_line)
             self.assertEqual(result, expected_line)
 
@@ -49,8 +40,8 @@ class TestPoly(unittest.TestCase):
     amount_tests = len(tests_pairs)
 
     # This makes so each pair counts as a separate test
-    for n in range(amount_tests):
-        locals()[f"test_{n}"] = partialmethod(test_builder, idx=n)
+    for n, test in enumerate(tests_pairs):
+        locals()[f"test_{n}"] = partialmethod(test_builder, test)
 
 
 if __name__ == "__main__":
