@@ -4,7 +4,6 @@ Dumps the final dictionary used by poly2mono.py into a JSON.
 
 import json
 import os
-from typing import Dict
 
 from monosyllables import create_dictionary_monosyllables
 from remove_spirits import create_dictionary_spirits
@@ -15,12 +14,25 @@ file_path = os.path.join(parent_dir, "dictionary.json")
 
 
 def create_dictionary() -> None:
-    final_dictionary: Dict[str, str] = dict()
-    final_dictionary.update(create_dictionary_spirits())
-    final_dictionary.update(create_dictionary_monosyllables())
+    # We initialize the final_dictionary with a couple words
+    # that don't fit the logic but have a high priority:
+    #   πῶς->πώς, πὼς->πως
+    #   ποῦ->πού, ποὺ->που
+    fix_dict = {
+        "\\bπὼς\\b": "πως",
+        "\\bποὺ\\b": "που",
+    }
+    spirits_dict = create_dictionary_spirits()
+    accents_dict = create_dictionary_monosyllables()
+
+    final_dictionary = {
+        "FIX": fix_dict,
+        "SPIRITS": spirits_dict,
+        "ACCENTS": accents_dict,
+    }
 
     with open(file_path, "w", encoding="utf-8") as out:
-        json.dump(final_dictionary, out, ensure_ascii=False)
+        json.dump(final_dictionary, out, ensure_ascii=False, indent=2)
 
 
 create_dictionary()

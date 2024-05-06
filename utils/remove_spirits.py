@@ -40,15 +40,7 @@ def CAPS_dict(dictionary: Dict[str, str]) -> Dict[str, str]:
 
 
 def create_dictionary_spirits() -> Dict[str, str]:
-    # We initialize the dict with a couple words
-    # that don't fit the logic but have a high priority:
-    #   πῶς->πώς, πὼς->πως
-    #   ποῦ->πού, ποὺ->που
-
-    final_dictionary: Dict[str, str] = {
-        "\\bπὼς\\b": "πως",
-        "\\bποὺ\\b": "που",
-    }
+    final_dictionary: Dict[str, str] = dict()
 
     for dictionary in ALL:
         letter_dictionary = inverted(dictionary)
