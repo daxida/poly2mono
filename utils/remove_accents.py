@@ -1,21 +1,20 @@
 import re
+from typing import Match
 
 """
-Just a bunch of utility functions. 
+Just some utility functions. 
 Only "remove_accents" and "remove_accents_and_marks" are used.
 """
 
 
 def remove_accents(string: str) -> str:
-    for k, v in dict(zip("άέίόύήώ", "αειουηω")).items():
-        string = re.sub(k, v, string)
-    return string
+    translation_table = str.maketrans("άέίόύήώ", "αειουηω")
+    return string.translate(translation_table)
 
 
 def remove_accents_and_marks(string: str) -> str:
-    for k, v in dict(zip("άέίϊόύϋήώ", "αειιουυηω")).items():
-        string = re.sub(k, v, string)
-    return string
+    translation_table = str.maketrans("άέίϊόύϋήώ", "αειιιουυηω")
+    return string.translate(translation_table)
 
 
 def has_acute_accent(word: str):
@@ -44,18 +43,17 @@ def is_double_accents_case(word: str):
     return has_long_spirit(word) and has_accent(word)
 
 
-def remove_acute_and_grave_accents(match):
-    string = match.group()
-    for k, v in dict(zip("άέίόύήώὰὲὴὶὸὺὼ", "αειουηωαειουηω")).items():
-        string = re.sub(k, v, string)
-    return string
+def remove_acute_and_grave_accents(match: Match[str]) -> str:
+    gp = match.group()
+    translation_table = str.maketrans("άέίόύήώὰὲὴὶὸὺὼ", "αειουηωαειουηω")
+    return gp.translate(translation_table)
 
 
-def my_replace(match):
-    match = match.group()
-    if is_double_accents_case(match):
-        match = re.sub(r"[άέήίόύώὰὲὴὶὸὺὼ]", remove_acute_and_grave_accents, match)
-    return match
+def double_accents_repl(match: Match[str]) -> str:
+    gp = match.group()
+    if is_double_accents_case(gp):
+        return re.sub(r"[άέήίόύώὰὲὴὶὸὺὼ]", remove_acute_and_grave_accents, gp)
+    return gp
 
 
 def fix_double_accents(text: str) -> str:
@@ -67,7 +65,10 @@ def fix_double_accents(text: str) -> str:
     It does make sense to allow them for certain pairs like
         - εἶδά ποτε or ἦτό ποτε
     """
-    return re.sub(r"\w+ (?!ποτε)", my_replace, text)
+    return re.sub(r"\w+ (?!ποτε)", double_accents_repl, text)
 
 
-# print(fix_double_accents("Ἄδμηθ, ὁρᾷς γὰρ τἀμὰ πράγμαθ ὡς ἔχει,"))
+if __name__ == "__main__":
+    #       v        v    <= Modifies these two
+    test = "Ἄδμηθ, ὁρᾷς γὰρ τἀμὰ πράγμαθ ὡς ἔχει,"
+    print(fix_double_accents(test))
