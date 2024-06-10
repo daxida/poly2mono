@@ -25,9 +25,20 @@ def create_dictionary() -> None:
     spirits_dict = create_dictionary_spirits()
     accents_dict = create_dictionary_monosyllables()
 
+    # Fix unnecessary ϊ in άϊ: 
+    # γάϊδουρος => γάιδουρος
+    diaeresis = {
+        "άϊ": "άι",
+        "άϋ": "άυ",
+        "έϊ": "έι",
+        "έϋ": "έυ",
+        "όϊ": "όι",
+    }
+
     final_dictionary = {
         "FIX": fix_dict,
         "SPIRITS": spirits_dict,
+        "DIAERESIS": diaeresis,
         "ACCENTS": accents_dict,
     }
 
