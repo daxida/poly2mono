@@ -42,6 +42,9 @@ class MyFrame(ttk.Frame):
         self.copy_button = Button(button_frame, text="Copy", command=self.copy_text)
         self.copy_button.pack(side=LEFT, padx=5)
 
+        self.clear_button = Button(button_frame, text="Clear", command=self.clear_text)
+        self.clear_button.pack(side=LEFT, padx=5)
+
         self.output = Text(self, width=80, height=20)
         self.output.pack(pady=5)
         self.output.insert("1.0", self.output_text)
@@ -63,6 +66,12 @@ class MyFrame(ttk.Frame):
         self.clipboard_clear()
         self.clipboard_append(self.output_text)
         self.update()  # Keep the clipboard content after the window is closed
+
+    def clear_text(self):
+        self.input.delete("1.0", "end")
+        self.output.delete("1.0", "end")
+        self.input_text = ""
+        self.output_text = ""
 
     def check_for_interrupt(self):
         try:
