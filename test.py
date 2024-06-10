@@ -1,10 +1,11 @@
 import unittest
 from functools import partialmethod
-from typing import Iterator, List, Tuple
+from typing import Iterator
 
 from poly2mono import poly2mono
 
-Pairs = List[Iterator[Tuple[str, str]]]
+Pair = Iterator[tuple[str, str]]
+Pairs = list[Pair]
 
 
 def init_tests() -> Pairs:
@@ -26,7 +27,7 @@ def init_tests() -> Pairs:
 tests_pairs = init_tests()
 
 
-def test_builder(self, test: Tuple[str, str]) -> None:
+def test_builder(self, test: Pair) -> None:
     """Compares sentence by sentence for easier visualization"""
     for source, expected in test:
         lines = zip(source.split("."), expected.split("."))

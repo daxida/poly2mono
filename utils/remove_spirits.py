@@ -1,5 +1,3 @@
-from typing import Dict
-
 # fmt: off
 '''
 Removes spirits from a string
@@ -31,16 +29,16 @@ OMEGA   = {"ω":"ὠὡῳᾠᾡ",   "ώ":"ὢὣὤὥὦὧὼώῶῲῴᾢ�
 ALL = [ALPHA, EPSILON, ETA, IOTA, OMICRON, RHO, YPSILON, OMEGA]
 
 
-def inverted(dictionary: Dict[str, str]) -> Dict[str, str]:
+def inverted(dictionary: dict[str, str]) -> dict[str, str]:
     return {ch: k for k, v in dictionary.items() for ch in v}
 
 
-def CAPS_dict(dictionary: Dict[str, str]) -> Dict[str, str]:
+def CAPS_dict(dictionary: dict[str, str]) -> dict[str, str]:
     return {k.upper(): v.upper() for k, v in dictionary.items()}
 
 
-def create_dictionary_spirits() -> Dict[str, str]:
-    final_dictionary: Dict[str, str] = dict()
+def create_dictionary_spirits() -> dict[str, str]:
+    final_dictionary: dict[str, str] = dict()
 
     for dictionary in ALL:
         letter_dictionary = inverted(dictionary)

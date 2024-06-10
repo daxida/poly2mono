@@ -2,8 +2,6 @@
 Remove accents from monosyllables.
 """
 
-from typing import Dict, List
-
 from remove_accents import remove_accents
 
 # fmt: off
@@ -167,10 +165,10 @@ def CAPS(string: str) -> str:
     return string[0].upper() + string[1:]
 
 
-def create_dictionary_monosyllables() -> Dict[str, str]:
-    monosyllables: Dict[str, str] = dict()
+def create_dictionary_monosyllables() -> dict[str, str]:
+    monosyllables: dict[str, str] = dict()
 
-    all_words: List[str] = []
+    all_words: list[str] = []
     for list_words in ALL:
         all_words.extend(list_words)
 
