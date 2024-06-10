@@ -33,8 +33,14 @@ class MyFrame(ttk.Frame):
         self.input.pack(pady=5)
         self.input.insert("1.0", self.input_text)
 
-        self.button = Button(self, text="Convert", command=self.action)
-        self.button.pack(pady=5)
+        button_frame = ttk.Frame(self)
+        button_frame.pack(pady=5)
+
+        self.convert_button = Button(button_frame, text="Convert", command=self.convert)
+        self.convert_button.pack(side=LEFT, padx=5)
+
+        self.copy_button = Button(button_frame, text="Copy", command=self.copy_text)
+        self.copy_button.pack(side=LEFT, padx=5)
 
         self.output = Text(self, width=80, height=20)
         self.output.pack(pady=5)
@@ -43,14 +49,20 @@ class MyFrame(ttk.Frame):
         self.check_for_interrupt()
         self.mainloop()
 
-        print("Finish.")
+        print("Finished.")
 
-    def action(self):
+    def convert(self):
         self.input_text = self.input.get("1.0", "end-1c")
         self.output_text = poly2mono(self.input_text)
 
         self.output.delete("1.0", "end")
         self.output.insert("1.0", self.output_text)
+
+    def copy_text(self):
+        self.output_text = self.output.get("1.0", "end-1c")
+        self.clipboard_clear()
+        self.clipboard_append(self.output_text)
+        self.update()  # Keep the clipboard content after the window is closed
 
     def check_for_interrupt(self):
         try:
