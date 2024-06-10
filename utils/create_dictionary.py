@@ -8,10 +8,6 @@ import os
 from monosyllables import create_dictionary_monosyllables
 from remove_spirits import create_dictionary_spirits
 
-current_dir = os.path.dirname(__file__)
-parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-file_path = os.path.join(parent_dir, "dictionary.json")
-
 
 def create_dictionary() -> None:
     # We initialize the final_dictionary with a couple words
@@ -25,7 +21,7 @@ def create_dictionary() -> None:
     spirits_dict = create_dictionary_spirits()
     accents_dict = create_dictionary_monosyllables()
 
-    # Fix unnecessary ϊ in άϊ: 
+    # Fix unnecessary ϊ in άϊ:
     # γάϊδουρος => γάιδουρος
     diaeresis = {
         "άϊ": "άι",
@@ -42,8 +38,13 @@ def create_dictionary() -> None:
         "ACCENTS": accents_dict,
     }
 
+    current_dir = os.path.dirname(__file__)
+    parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+    file_path = os.path.join(parent_dir, "dictionary.json")
+
     with open(file_path, "w", encoding="utf-8") as out:
         json.dump(final_dictionary, out, ensure_ascii=False, indent=2)
 
 
-create_dictionary()
+if __name__ == "__main__":
+    create_dictionary()
