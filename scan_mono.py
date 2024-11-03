@@ -4,6 +4,7 @@ all the monosyllables that still have an accent.
 This is useful to identify monosyllables that should be
 stripped from their accent after polytonic removal."""
 
+import argparse
 import re
 from pathlib import Path
 
@@ -83,8 +84,15 @@ def get_accented_monosyllables(text: str) -> list[str]:
     return sorted(accented_monosyllables)
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("ipath", type=Path, help="Path to the input text file.")
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    ipath = Path("dump.txt")
+    args = parse_args()
+    ipath = args.ipath
     text = ipath.open("r", encoding="utf-8").read()
     text_mono = poly2mono(text)
     accented_monosyllables = get_accented_monosyllables(text_mono)
