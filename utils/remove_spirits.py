@@ -58,6 +58,11 @@ def create_dictionary_spirits() -> dict[str, str]:
 
     final_dictionary.update(FIXES)
 
+    # Fixes: ΚΕΦΑΛΑΙΟ Α´ -> ΚΕΦΑΛΑΟ Α´
+    final_dictionary.pop("ΑΙ")
+    final_dictionary.pop("ΗΙ")
+    final_dictionary.pop("ΩΙ")
+
     return final_dictionary
 
 

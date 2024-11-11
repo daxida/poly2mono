@@ -5,11 +5,6 @@ from typing import Match
 
 from utils.remove_accents import fix_double_accents
 
-"""
-    TOFIX:
-        ΚΕΦΑΛΑΙΟ Α´ -> ΚΕΦΑΛΑΟ Α´
-"""
-
 with open("dictionary.json", "r", encoding="utf-8") as i:
     dictionary = json.load(i)
 
