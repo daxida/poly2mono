@@ -1,6 +1,7 @@
 import re
 import unittest
 from functools import partialmethod
+from pathlib import Path
 from typing import Iterator
 
 from poly2mono import poly2mono
@@ -11,14 +12,14 @@ Pairs = list[Pair]
 
 
 def init_tests() -> Pairs:
+    tests_path = Path("tests")
     pairs: Pairs = []
     for i in range(10):
         try:
-            path = f"tests/{i:02g}_"
-            with open(f"{path}poly.txt", "r", encoding="utf-8") as source:
-                poly = source.readlines()
-            with open(f"{path}mono.txt", "r", encoding="utf-8") as expected:
-                mono = expected.readlines()
+            poly_path = tests_path / f"{i:02g}_poly.txt"
+            mono_path = tests_path / f"{i:02g}_mono.txt"
+            poly = poly_path.open("r", encoding="utf-8").readlines()
+            mono = mono_path.open("r", encoding="utf-8").readlines()
             pairs.append(zip(poly, mono))
         except FileNotFoundError:
             break

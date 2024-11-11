@@ -1,12 +1,13 @@
 import argparse
 import json
 import re
+from pathlib import Path
 from typing import Match
 
 from utils.remove_accents import fix_double_accents
 
-with open("dictionary.json", "r", encoding="utf-8") as i:
-    dictionary = json.load(i)
+DICT_PATH = Path("dictionary.json")
+DICTIONARY = json.load(DICT_PATH.open("r", encoding="utf-8"))
 
 
 def poly2mono(text: str) -> str:
@@ -22,7 +23,7 @@ def poly2mono(text: str) -> str:
             return subdict[key]
 
     text = fix_double_accents(text)
-    for subdict in dictionary.values():
+    for subdict in DICTIONARY.values():
         pat = "|".join(key for key in subdict)
         text = re.sub(pat, replace, text)
 

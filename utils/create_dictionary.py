@@ -3,7 +3,7 @@ Dumps the final dictionary used by poly2mono.py into a JSON.
 """
 
 import json
-import os
+from pathlib import Path
 
 from monosyllables import create_dictionary_monosyllables
 from remove_spirits import create_dictionary_spirits
@@ -38,11 +38,11 @@ def create_dictionary() -> None:
         "ACCENTS": accents_dict,
     }
 
-    current_dir = os.path.dirname(__file__)
-    parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-    file_path = os.path.join(parent_dir, "dictionary.json")
+    current_dir = Path(__file__).resolve().parent
+    parent_dir = current_dir.parent
+    file_path = parent_dir / "dictionary.json"
 
-    with open(file_path, "w", encoding="utf-8") as out:
+    with file_path.open("w", encoding="utf-8") as out:
         json.dump(final_dictionary, out, ensure_ascii=False, indent=2)
 
 
