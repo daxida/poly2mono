@@ -46,7 +46,7 @@ class TestPoly(unittest.TestCase):
     for n, test in enumerate(tests_pairs):
         locals()[f"test_{n}"] = partialmethod(test_builder, test)
 
-    def test_remove_spirits(self):
+    def test_remove_spirits(self) -> None:
         text = (
             "Οπὼς, ᾘσθάνθην, Ἐλπίζουμε ἡ ἱστοσελίδα αὐτὴ νὰ πείσει ὅσους ἐπισκέπτες "
             "θεωροῦν τὸ πολυτονικὸ ξεπερασμένο καὶ ἄχρηστο ὅτι συμβαίνει ἀκριβῶς τὸ "
@@ -72,14 +72,14 @@ class TestPoly(unittest.TestCase):
             "παρελθόν. Είναι χρέος μας νά επανορθώσουμε αυτό τό λάθος."
         )
 
-        def translate(dictionary, text):
+        def _trans(dictionary: dict[str, str], text: str) -> str:
             for k, v in dictionary.items():
                 text = re.sub(k, v, text)
             return text
 
         dictionary = create_dictionary_spirits()
         for word, expected in zip(text.split(), text_expected.split()):
-            received = translate(dictionary, word)
+            received = _trans(dictionary, word)
             assert received == expected, f"word {word}, expected {expected}"
 
 

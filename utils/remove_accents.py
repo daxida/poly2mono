@@ -1,10 +1,10 @@
-import re
-from typing import Match
-
 """
-Just some utility functions. 
+Utility functions.
 Only "remove_accents" and "remove_accents_and_marks" are used.
 """
+
+import re
+from typing import Match
 
 
 def remove_accents(string: str) -> str:
@@ -17,19 +17,19 @@ def remove_accents_and_marks(string: str) -> str:
     return string.translate(translation_table)
 
 
-def has_acute_accent(word: str):
+def has_acute_accent(word: str) -> Match[str] | None:
     return re.search(r"[άέήίόύώ]", word)
 
 
-def has_grave_accent(word: str):
+def has_grave_accent(word: str) -> Match[str] | None:
     return re.search(r"[ὰὲὴὶὸὺὼ]", word)
 
 
-def has_accent(word: str):
+def has_accent(word: str) -> Match[str] | None:
     return re.search(r"[άέήίόύώὰὲὴὶὸὺὼ]", word)
 
 
-def has_long_spirit(word: str):
+def has_long_spirit(word: str) -> Match[str] | None:
     # δὲν εὗρέ που
     # ἆρά γε
     # τὰ ὦτά του
@@ -39,8 +39,8 @@ def has_long_spirit(word: str):
     return re.search(r"[ᾶἆῆἦῖἶἷῦὗῶὦ]", word)
 
 
-def is_double_accents_case(word: str):
-    return has_long_spirit(word) and has_accent(word)
+def is_double_accents_case(word: str) -> bool:
+    return has_long_spirit(word) is not None and has_accent(word) is not None
 
 
 def remove_acute_and_grave_accents(match: Match[str]) -> str:
