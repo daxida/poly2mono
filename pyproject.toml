@@ -1,0 +1,13 @@
+[tool.ruff]
+line-length = 100
+output-format = "concise"
+
+[tool.ruff.lint]
+select = [
+    "W",    # pycodestyle warning
+    "I",    # isort
+    "Q",    # quotes
+    "PTH",  # Paths
+    "F",
+    "N",
+]
