@@ -1,3 +1,4 @@
+import argparse
 import json
 import re
 from typing import Match
@@ -33,5 +34,13 @@ def poly2mono(text: str) -> str:
     return text
 
 
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("text", type=str)
+    args = parser.parse_args()
+    converted_text = poly2mono(args.text)
+    print(converted_text)
+
+
 if __name__ == "__main__":
-    pass
+    main()
