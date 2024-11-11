@@ -1,6 +1,4 @@
-"""
-Remove accents from monosyllables.
-"""
+"""Remove accents from monosyllables."""
 
 from remove_accents import remove_accents
 
@@ -76,6 +74,7 @@ SUBSTANTIVES = [
     "φθείρ",
     "φώς",
     "ζήν",
+    "μπάρ",
     "μύς", "μύν",
     "πλού", "πλούς", "πλούν",
     "πούς",
@@ -94,7 +93,7 @@ SUBSTANTIVES = [
 ]
 
 SHORTENED = [
-    "σύ", "σείς", "κεί", "κύρ", "γώ", "σά"
+    "σύ", "σείς", "κεί", "κύρ", "γώ", "σά",
 ]
 
 # διά is correct
@@ -181,11 +180,11 @@ AMBIGUOUS = [
 # https://en.wiktionary.org/wiki/Category:Greek_articles
 SIGMA_START = [
     "στά", "στή", "στήν", "στής", "στίς", "στές",
-    "στό", "στόν", "στού", "στούς", "στούν", "στών"
+    "στό", "στόν", "στού", "στούς", "στούν", "στών",
 ]
 TAU_START = [
     "τά", "τάις", "τάς", "τή", "τήν", "τής", "τίς",
-    "τό", "τόις", "τόν", "τού", "τούς", "τώ", "τών"
+    "τό", "τόις", "τόν", "τού", "τούς", "τώ", "τών",
 ]
 # fmt: on
 
@@ -212,18 +211,18 @@ def to_regex(string: str) -> str:
     return rf"\b{string}\b"
 
 
-def CAPS(string: str) -> str:
+def caps(string: str) -> str:
     return string[0].upper() + string[1:]
 
 
 def create_dictionary_monosyllables() -> dict[str, str]:
-    monosyllables: dict[str, str] = dict()
+    monosyllables: dict[str, str] = {}
 
     all_words: list[str] = []
     for list_words in ALL:
         all_words.extend(list_words)
 
     monosyllables.update({to_regex(k): remove_accents(k) for k in all_words})
-    monosyllables.update({to_regex(CAPS(k)): CAPS(remove_accents(k)) for k in all_words})
+    monosyllables.update({to_regex(caps(k)): caps(remove_accents(k)) for k in all_words})
 
     return monosyllables

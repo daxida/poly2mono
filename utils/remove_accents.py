@@ -1,5 +1,5 @@
-"""
-Utility functions.
+"""Utility functions.
+
 Only "remove_accents" and "remove_accents_and_marks" are used.
 """
 
@@ -57,7 +57,7 @@ def double_accents_repl(match: Match[str]) -> str:
 
 
 def fix_double_accents(text: str) -> str:
-    """
+    """Note that:
                χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της,
     --> (here) χεῖρας του, ὑπῆρξε ποτε, χρῶτα της
     --> (main) χείρας του, υπήρξε ποτε, χρώτα της,

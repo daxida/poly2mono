@@ -1,6 +1,4 @@
-"""
-Dumps the final dictionary used by poly2mono.py into a JSON.
-"""
+"""Dumps the final dictionary used by poly2mono.py into a JSON."""
 
 import json
 from pathlib import Path
@@ -10,6 +8,7 @@ from remove_spirits import create_dictionary_spirits
 
 
 def create_dictionary() -> None:
+    """Cache the dictionary used for poly2mono."""
     # We initialize the final_dictionary with a couple words
     # that don't fit the logic but have a high priority:
     #   πῶς->πώς, πὼς->πως
@@ -29,6 +28,7 @@ def create_dictionary() -> None:
         "έϊ": "έι",
         "έϋ": "έυ",
         "όϊ": "όι",
+        "ούϊ": "ούι",  # ἀλληλούϊα
     }
 
     final_dictionary = {

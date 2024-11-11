@@ -31,7 +31,7 @@ tests_pairs = init_tests()
 
 
 def test_builder(self, test: Pair) -> None:
-    """Compares sentence by sentence for easier visualization"""
+    """Compares sentence by sentence for easier visualization."""
     for source, expected in test:
         lines = zip(source.split("."), expected.split("."))
         for source_line, expected_line in lines:

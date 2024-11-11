@@ -1,8 +1,11 @@
-"""Read a polytonic text, remove the polytonic and return
+"""Scan for accented monosyllables.
+
+Read a polytonic text, remove the polytonic and return
 all the monosyllables that still have an accent.
 
 This is useful to identify monosyllables that should be
-stripped from their accent after polytonic removal."""
+stripped from their accent after polytonic removal.
+"""
 
 import argparse
 import re
@@ -11,7 +14,6 @@ from pathlib import Path
 from greek_accentuation.syllabify import syllabify
 
 from poly2mono import poly2mono
-
 
 VOWEL_ACCENTED = re.compile(r"[έόίύάήώ]")
 
