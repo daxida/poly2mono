@@ -6,8 +6,8 @@ from typing import Iterator
 
 import pytest
 
-from src.poly2mono.poly2mono import poly2mono
-from src.poly2mono.utils.remove_spirits import create_dictionary_spirits
+from poly2mono.main import poly2mono
+from poly2mono.utils.remove_spirits import create_dictionary_spirits
 
 Pair = Iterator[tuple[str, str]]
 Pairs = list[Pair]

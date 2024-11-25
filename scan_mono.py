@@ -15,7 +15,7 @@ from pathlib import Path
 
 from greek_accentuation.syllabify import syllabify
 
-from poly2mono import poly2mono
+from poly2mono.main import poly2mono
 
 VOWEL_ACCENTED = re.compile(r"[έόίύάήώ]")
 

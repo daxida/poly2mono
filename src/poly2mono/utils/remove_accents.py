@@ -71,9 +71,9 @@ def fix_double_accents(text: str) -> str:
         - εἶδά ποτε
         - ἦτό  ποτε
 
-    # >>> from utils.remove_accents import *
-    # >>> fix_double_accents("χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της")
-    # 'χεῖρας του, ὑπῆρξε ποτε, χρῶτα της'
+    >>> from poly2mono.utils.remove_accents import *
+    >>> fix_double_accents("χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της")
+    'χεῖρας του, ὑπῆρξέ ποτε, χρῶτα της'
     """
     return re.sub(r"\w+ (?!ποτε)", double_accents_repl, text)
 
