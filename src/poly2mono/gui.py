@@ -2,7 +2,7 @@
 
 from tkinter import LEFT, Button, Text, Tk, ttk
 
-from src.poly2mono.poly2mono import poly2mono
+from poly2mono.main import poly2mono
 
 
 class MyFrame(ttk.Frame):

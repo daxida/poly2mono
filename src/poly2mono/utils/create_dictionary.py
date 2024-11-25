@@ -3,8 +3,8 @@
 import json
 from pathlib import Path
 
-from src.poly2mono.utils.monosyllables import create_dictionary_monosyllables
-from src.poly2mono.utils.remove_spirits import create_dictionary_spirits
+from poly2mono.utils.monosyllables import create_dictionary_monosyllables
+from poly2mono.utils.remove_spirits import create_dictionary_spirits
 
 
 def create_dictionary() -> None:
@@ -38,14 +38,14 @@ def create_dictionary() -> None:
         "ACCENTS": accents_dict,
     }
 
-    current_dir = Path(__file__).resolve().parent
-    parent_dir = current_dir.parent
-    file_path = parent_dir / "dictionary.json"
+    current_dir = Path(__file__).resolve()
+    parent_dir = current_dir.parent.parent
+    dict_path = parent_dir / "dictionary.json"
 
-    with file_path.open("w", encoding="utf-8") as out:
+    with dict_path.open("w", encoding="utf-8") as out:
         json.dump(final_dictionary, out, ensure_ascii=False, indent=2)
 
-    print("Succesfully updated dictionary")
+    print(f"Succesfully updated dictionary at {dict_path}")
 
 
 if __name__ == "__main__":

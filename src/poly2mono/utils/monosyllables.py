@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from src.poly2mono.utils.remove_accents import remove_accents
+from poly2mono.utils.remove_accents import remove_accents
 
 # fmt: off
 """
