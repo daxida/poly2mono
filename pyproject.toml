@@ -1,3 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poly2mono"
+version = "1.0.0"
+readme = "README.md"
+dependencies = [
+    "tk>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.1",
+]
+
+[tool.setuptools]
+packages = ["src"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"src" = ["*.json"]
+
+[project.scripts]
+p2m = "src.poly2mono.gui:main"
+update = "src.poly2mono.utils.create_dictionary:create_dictionary"
+
 # [tool.pytest.ini_options]
 # addopts = "--doctest-modules"
 

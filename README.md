@@ -2,17 +2,22 @@
 
 Converts polytonic to monotonic.
 
-Uses tkinter for the interface. If you don't need it, just run poly2mono in `poly2mono.py` directly onto your text.
-
 ## Setup
 
-Requires tkinter so you may have to `pip install tk`.
+```
+pip install git+https://github.com/daxida/poly2mono
+```
 
 ## Run
 
-- `python3 main.py` for the window interface, as shown in the picture.
-- `python3 utils/create_dictionary.py` to update the current dictionary.
-- `pytest` to run the tests.
+```
+# Launches the GUI
+p2m
+# Updates the dictionary (if you want to add extra edge cases)
+update
+```
+
+Run `pytest` for testing tests.
 
 <img src="https://github.com/daxida/poly2mono/blob/master/others/example.png" style="width: 50%; height: 50%">
 

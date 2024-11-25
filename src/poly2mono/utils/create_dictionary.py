@@ -3,8 +3,8 @@
 import json
 from pathlib import Path
 
-from monosyllables import create_dictionary_monosyllables
-from remove_spirits import create_dictionary_spirits
+from src.poly2mono.utils.monosyllables import create_dictionary_monosyllables
+from src.poly2mono.utils.remove_spirits import create_dictionary_spirits
 
 
 def create_dictionary() -> None:
@@ -44,6 +44,8 @@ def create_dictionary() -> None:
 
     with file_path.open("w", encoding="utf-8") as out:
         json.dump(final_dictionary, out, ensure_ascii=False, indent=2)
+
+    print("Succesfully updated dictionary")
 
 
 if __name__ == "__main__":

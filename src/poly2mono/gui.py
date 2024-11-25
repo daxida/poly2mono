@@ -2,7 +2,7 @@
 
 from tkinter import LEFT, Button, Text, Tk, ttk
 
-from poly2mono import poly2mono
+from src.poly2mono.poly2mono import poly2mono
 
 
 class MyFrame(ttk.Frame):
@@ -76,6 +76,10 @@ class MyFrame(ttk.Frame):
             self.quit()
 
 
-if __name__ == "__main__":
+def main() -> None:
     main_window = Tk()
     MyFrame(main_window).run()
+
+
+if __name__ == "__main__":
+    main()

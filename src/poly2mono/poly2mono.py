@@ -4,9 +4,9 @@ import re
 from pathlib import Path
 from typing import Match
 
-from utils.remove_accents import fix_double_accents
+from src.poly2mono.utils.remove_accents import fix_double_accents
 
-DICT_PATH = Path("dictionary.json")
+DICT_PATH = Path(__file__).parent / "dictionary.json"
 DICTIONARY = json.load(DICT_PATH.open("r", encoding="utf-8"))
 
 
