@@ -11,11 +11,11 @@ Requires tkinter so you may have to `pip install tk`.
 ## Run
 
 - `python3 main.py` for the window interface, as shown in the picture.
-- `python3 test.py` for the unittests.
 - `python3 utils/create_dictionary.py` to update the current dictionary.
+- `pytest` to run the tests.
 
 <img src="https://github.com/daxida/poly2mono/blob/master/others/example.png" style="width: 50%; height: 50%">
-          
+
 ## Logic
 
 The whole program is nothing but a chained replacement of key value pairs dumped in dictionary.json.
