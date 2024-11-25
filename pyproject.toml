@@ -1,3 +1,6 @@
+# [tool.pytest.ini_options]
+# addopts = "--doctest-modules"
+
 [tool.ruff]
 line-length = 100
 output-format = "concise"

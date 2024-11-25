@@ -71,11 +71,12 @@ def fix_double_accents(text: str) -> str:
         - εἶδά ποτε
         - ἦτό  ποτε
 
+    # >>> from utils.remove_accents import *
+    # >>> fix_double_accents("χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της")
+    # 'χεῖρας του, ὑπῆρξε ποτε, χρῶτα της'
     """
     return re.sub(r"\w+ (?!ποτε)", double_accents_repl, text)
 
 
 if __name__ == "__main__":
-    #       v        v    <= Modifies these two
-    test = "Ἄδμηθ, ὁρᾷς γὰρ τἀμὰ πράγμαθ ὡς ἔχει,"
-    print(fix_double_accents(test))
+    pass

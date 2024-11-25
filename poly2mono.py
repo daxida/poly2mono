@@ -31,6 +31,11 @@ def poly2mono(text: str) -> str:
 
 
 def main() -> None:
+    """Print the result of poly2mono.
+
+    Intended to be called through the terminal.
+    """
+    # TODO: rename or export this
     parser = argparse.ArgumentParser()
     parser.add_argument("text", type=str)
     args = parser.parse_args()
