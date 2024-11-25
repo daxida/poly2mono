@@ -14,17 +14,17 @@ Pairs = list[Pair]
 
 
 def init_tests() -> Pairs:
+    n_tests = 10
     tests_path = Path("tests")
+    assert len(list(tests_path.iterdir())) == 2 * n_tests
+
     pairs: Pairs = []
-    for i in range(10):
-        try:
-            poly_path = tests_path / f"{i:02g}_poly.txt"
-            mono_path = tests_path / f"{i:02g}_mono.txt"
-            poly = poly_path.open("r", encoding="utf-8").readlines()
-            mono = mono_path.open("r", encoding="utf-8").readlines()
-            pairs.append(zip(poly, mono))
-        except FileNotFoundError:
-            break
+    for i in range(n_tests):
+        poly_path = tests_path / f"{i:02g}_poly.txt"
+        mono_path = tests_path / f"{i:02g}_mono.txt"
+        poly = poly_path.open("r", encoding="utf-8").readlines()
+        mono = mono_path.open("r", encoding="utf-8").readlines()
+        pairs.append(zip(poly, mono))
 
     return pairs
 

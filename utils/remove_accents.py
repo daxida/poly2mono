@@ -59,13 +59,18 @@ def double_accents_repl(match: Match[str]) -> str:
 
 
 def fix_double_accents(text: str) -> str:
-    """Note that:
-               χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της,
-    --> (here) χεῖρας του, ὑπῆρξε ποτε, χρῶτα της
-    --> (main) χείρας του, υπήρξε ποτε, χρώτα της,
+    """Fix the special case of double accents.
+
+    Example:
+    -------
+    (original)  χεῖράς του, ὑπῆρξέ ποτε, χρῶτά της
+    --> (here)  χεῖρας του, ὑπῆρξε ποτε, χρῶτα της
+    --> (main)  χείρας του, υπήρξε ποτε, χρώτα της
 
     It does make sense to allow them for certain pairs like
-        - εἶδά ποτε or ἦτό ποτε
+        - εἶδά ποτε
+        - ἦτό  ποτε
+
     """
     return re.sub(r"\w+ (?!ποτε)", double_accents_repl, text)
 

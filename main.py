@@ -6,7 +6,7 @@ from poly2mono import poly2mono
 
 
 class MyFrame(ttk.Frame):
-    def __init__(self, main_window: Tk = Tk()) -> None:
+    def __init__(self, main_window: Tk) -> None:
         super().__init__(main_window)
         ttk.Frame(main_window, padding=10)
         main_window.title("Polytonic to Monotonic Converter")
@@ -77,4 +77,5 @@ class MyFrame(ttk.Frame):
 
 
 if __name__ == "__main__":
-    MyFrame().run()
+    main_window = Tk()
+    MyFrame(main_window).run()
