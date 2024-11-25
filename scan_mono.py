@@ -7,6 +7,8 @@ This is useful to identify monosyllables that should be
 stripped from their accent after polytonic removal.
 """
 
+from __future__ import annotations
+
 import argparse
 import re
 from pathlib import Path

@@ -1,5 +1,7 @@
 """Remove accents from monosyllables."""
 
+from __future__ import annotations
+
 from remove_accents import remove_accents
 
 # fmt: off

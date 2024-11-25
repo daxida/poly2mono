@@ -14,6 +14,8 @@ Resources:
 ὠὡὢὣὤὥὦὧὼώῶῳῲῴᾠᾡᾢᾣᾤᾥᾦᾧῷ
 """
 
+from __future__ import annotations
+
 # fmt: off
 ALPHA   = {"α":"ἀἁᾰᾱᾳᾀᾁ", "ά":"ἂἃἄἅἆἇὰάᾶᾲᾴᾂᾃᾄᾅᾆᾇᾷ"}
 EPSILON = {"ε":"ἐἑ",      "έ":"ἒἓἔἕὲέ"}

@@ -3,6 +3,8 @@
 Only "remove_accents" and "remove_accents_and_marks" are used.
 """
 
+from __future__ import annotations
+
 import re
 from typing import Match
 
