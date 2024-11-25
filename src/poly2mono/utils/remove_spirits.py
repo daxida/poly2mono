@@ -39,6 +39,15 @@ def caps_dict(dictionary: dict[str, str]) -> dict[str, str]:
 
 
 def create_dictionary_spirits() -> dict[str, str]:
+    """Create a dictionary to remove spirits.
+
+    Note: we have to address the ambiguity of ᾘ
+    >>> x = "ᾘ"
+    >>> x.lower().upper() == x
+    False
+    >>> "ᾐ".upper()
+    'ἨΙ'
+    """
     final_dictionary: dict[str, str] = {}
 
     for dictionary in ALL:
@@ -46,12 +55,6 @@ def create_dictionary_spirits() -> dict[str, str]:
         final_dictionary.update(letter_dictionary)
         final_dictionary.update(caps_dict(letter_dictionary))
 
-    """
-    Fixes the ambiguity of ᾘ - Note that:
-        print("ᾘ".lower() == "ᾐ") # True
-        print("ᾘ" == "ᾐ".upper()) # False
-        print("ᾐ".upper())        # ἨΙ
-    """
     fixes = {"ᾘ": "Η"}
     final_dictionary.update(fixes)
 

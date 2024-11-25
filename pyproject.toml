@@ -27,15 +27,15 @@ poly2mono = ["*.json"]
 p2m = "poly2mono.gui:main"
 update = "poly2mono.utils.create_dictionary:create_dictionary"
 
-# [tool.pytest.ini_options]
-# addopts = [
-#     '--doctest-modules',
-#     '--pyargs',
-# ]
-# testpaths = [
-#     "./tests",
-#     "poly2mono",
-# ]
+[tool.pytest.ini_options]
+addopts = [
+    '--doctest-modules',
+    '--pyargs',
+]
+testpaths = [
+    "./tests",
+    "poly2mono",
+]
 
 [tool.ruff]
 line-length = 100
