@@ -4,6 +4,15 @@ Resources:
     https://github.com/irenevl/Polytonic-tutorial
     https://en.wikipedia.org/wiki/Greek_diacritics
 
+ἈἉἊἋἌἍἎἏᾺΆᾸᾹᾼᾈᾉᾊᾋᾌᾍᾎᾏ
+ἘἙἚἛἜἝῈΈ
+ἨἩἪἫἬἭἮἯῊΉῌᾘᾙᾚᾛᾜᾝᾞᾟ
+ἸἹἺἻἼἽἾἿῚΊῘῙ
+ὈὉὊὋὌὍῸΌ
+Ῥ
+ὙὛὝὟῪΎῨῩ
+ὨὩὪὫὬὭὮὯῺΏῼᾨᾩᾪᾫᾬᾭᾮᾯ
+
 ἀἁἂἃἄἅἆἇὰάᾰᾱᾶᾳᾲᾴᾀᾁᾂᾃᾄᾅᾆᾇᾷ
 ἐἑἒἓἔἕὲέ
 ἠἡἢἣἤἥἦἧὴήῆῃῂῄᾐᾑᾒᾓᾔᾕᾖᾗῇ
@@ -16,18 +25,28 @@ Resources:
 
 from __future__ import annotations
 
+"""Lower and uppercase must be treated separatedly due to
+:.upper(): not playing nice with iota subscript.
+"""
+
 # fmt: off
 ALPHA   = {"α":"ἀἁᾰᾱᾳᾀᾁ", "ά":"ἂἃἄἅἆἇὰάᾶᾲᾴᾂᾃᾄᾅᾆᾇᾷ"}
 EPSILON = {"ε":"ἐἑ",      "έ":"ἒἓἔἕὲέ"}
 ETA     = {"η":"ἠἡῃᾐᾑ",   "ή":"ἢἣἤἥἦἧὴήῆῂῄᾒᾓᾔᾕᾖᾗῇ"}
-IOTA    = {"ι":"ἰἱῐῑ",    "ί":"ἲἳἴἵἶἷὶίῖῒΐῗ"}
+IOTA    = {"ι":"ἰἱῐῑ",    "ί":"ἲἳἴἵἶἷὶίῖ",         "ΐ": "ῒΐῗ"}
 OMICRON = {"ο":"ὀὁ",      "ό":"ὂὃὄὅὸό"}
 RHO     = {"ρ":"ῥῤ"}
 YPSILON = {"υ":"ὑῠῡὐ",    "ύ":"ὓὕὗὺύὒὔὖῦῢΰῧ"}
 OMEGA   = {"ω":"ὠὡῳᾠᾡ",   "ώ":"ὢὣὤὥὦὧὼώῶῲῴᾢᾣᾤᾥᾦᾧῷ"}
+
+# Special case iota subscript, cf. :create_dictionary_spirits: docstring.
+ALPHA_IS = {"Α":"ᾼᾈᾉ", "Ά":"ᾊᾋᾌᾍᾎᾏ"}
+ETA_IS   = {"Η":"ῌᾘᾙ", "Ή":"ᾚᾛᾜᾝᾞᾟ"}
+OMEGA_IS = {"Ω":"ῼᾨᾩ", "Ώ":"ᾪᾫᾬᾭᾮᾯ"}
 # fmt: on
 
-ALL = [ALPHA, EPSILON, ETA, IOTA, OMICRON, RHO, YPSILON, OMEGA]
+IOTA_SUBS = [ALPHA_IS, ETA_IS, OMEGA_IS]
+ALL = [ALPHA, EPSILON, ETA, IOTA, OMICRON, RHO, YPSILON, OMEGA, *IOTA_SUBS]
 
 
 def inverted(dictionary: dict[str, str]) -> dict[str, str]:
@@ -54,9 +73,6 @@ def create_dictionary_spirits() -> dict[str, str]:
         letter_dictionary = inverted(dictionary)
         final_dictionary.update(letter_dictionary)
         final_dictionary.update(caps_dict(letter_dictionary))
-
-    fixes = {"ᾘ": "Η"}
-    final_dictionary.update(fixes)
 
     # Fixes: ΚΕΦΑΛΑΙΟ Α´ -> ΚΕΦΑΛΑΟ Α´
     final_dictionary.pop("ΑΙ")
