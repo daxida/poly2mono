@@ -12,6 +12,9 @@
 δὲν θὰ σ ἀφήσουνε νὰ μπεῖς ἐκεῖ
 ΩΙΔΗ ΑΙΘΟΥΣΑ ΗΙΩΝΑ
 ―Χθὲς χθές;
+// There is an argument to keep it in front έκ τινος
+// but it does not make sense elsewhere
+ἔκ τινος ἒκ φῶτα
 // Foreign words > put elsewhere
 ντὶ ντὰς ἴστ
 Ἐμεῖς ντὲν εἴμαστε ζητιάνοι

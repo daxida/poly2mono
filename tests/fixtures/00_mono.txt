@@ -12,6 +12,9 @@
 δεν θα σ αφήσουνε να μπεις εκεί
 ΩΙΔΗ ΑΙΘΟΥΣΑ ΗΙΩΝΑ
 ―Χθες χθες;
+// There is an argument to keep it in front εκ τινος
+// but it does not make sense elsewhere
+εκ τινος εκ φώτα
 // Foreign words > put elsewhere
 ντι ντας ιστ
 Εμείς ντεν είμαστε ζητιάνοι

@@ -41,6 +41,21 @@ def test_poly2mono(test: Pair) -> None:
             ), f"Mismatch: '{source_line}' -> '{result}', expected '{expected_line}'"
 
 
+@pytest.mark.parametrize(
+    "poly, expected",
+    [
+        ("Ὅ,τι ὅ,τι", "Ό,τι ό,τι"),
+        ("πλί", "πλι"),
+        ("Φταῖς", "Φταις"),
+        ("Ὁ Ἅις Νικόλας", "Ο Άις Νικόλας"),
+        ("Άι Βασίλης", "Άι Βασίλης"),
+        ("σόι", "σόι"),
+    ],
+)
+def test_poly2mono_minimal(poly: str, expected: str) -> None:
+    assert poly2mono(poly) == expected
+
+
 def test_remove_spirits() -> None:
     text = (
         "Οπὼς, ᾘσθάνθην, Ἐλπίζουμε ἡ ἱστοσελίδα αὐτὴ νὰ πείσει ὅσους ἐπισκέπτες "
