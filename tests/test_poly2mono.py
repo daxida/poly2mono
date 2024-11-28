@@ -50,6 +50,11 @@ def test_poly2mono(test: Pair) -> None:
         ("Ὁ Ἅις Νικόλας", "Ο Άις Νικόλας"),
         ("Άι Βασίλης", "Άι Βασίλης"),
         ("σόι", "σόι"),
+        ("Κάιν", "Κάιν"),
+        ("νὰ ξῇς κοιλιές", "να ξης κοιλιές"),
+        # This is tricky: it depends on knowing if the unabbridged word
+        # has the accent in what is left of the abbreviation: Άγιος > Άγ.
+        ("Ἅγ. Παντελεήμονα", "Άγ. Παντελεήμονα"),
     ],
 )
 def test_poly2mono_minimal(poly: str, expected: str) -> None:
