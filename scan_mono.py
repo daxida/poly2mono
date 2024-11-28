@@ -24,21 +24,24 @@ CORRECT_MONO = {"είς", "έν", "έκ", "έξ", "πώς", "πού", "ή", "σ�
 CORRECT_NOT_MONO = {"δαυίδ", "πλάι", "άι"}
 """Correct spelling but wrongly treated as monosyllable by syllabify."""
 
-TRANSLITERATIONS_IT = {"νόν", "βά", "φάρ", "γράν", "κέ"}
-TRANSLITERATIONS_FR = {"πρί", "φίξ", "ίλ"}
-TRANSLITERATIONS_TR = {"βέ"}
-TRANSLITERATIONS_EN = {"άιλς", "όβ", "δέμ"}
-TRANSLITERATIONS_LA = {"έτ", "σούμ"}
-TRANSLITERATIONS_OTHERS = {"βάζ", "ίστ", "νέ"}
-
-TRANSLITERATIONS = {
-    *TRANSLITERATIONS_IT,
-    *TRANSLITERATIONS_FR,
-    *TRANSLITERATIONS_TR,
-    *TRANSLITERATIONS_EN,
-    *TRANSLITERATIONS_LA,
-    *TRANSLITERATIONS_OTHERS,
-}
+# fmt: off
+TRANSLITERATIONS = [
+    # IT
+    "νόν", "βά", "φάρ", "γράν", "κέ",
+    # FR
+    "πρί", "φίξ", "ίλ",
+    # TR
+    "βέ",
+    # EN
+    "άιλς", "όβ", "δέμ",
+    # LA
+    "έτ", "σούμ",
+    # DE
+    "ντί", "ντάς", "ίστ",
+    # OTHERS
+    "βάζ", "νέ",
+]
+# fmt: on
 
 TYPOS = {"άγ", "φαί", "φαίς", "τρός", "τεύχ"}
 
