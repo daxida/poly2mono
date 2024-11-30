@@ -11,16 +11,23 @@ DICTIONARY = json.load(DICT_PATH.open("r", encoding="utf-8"))
 
 
 def poly2mono(text: str) -> str:
-    def replace(match: Match[str]) -> str:
-        # The FIX and ACCENTS dictionaries work with words (\bword\b)
-        # but the SPIRITS works with characters, so we need to take into
-        # account this distinction to find the original word from a match.
-        word = match.group(0)
-        key = f"\\b{word}\\b"
+    def replace(m: Match[str]) -> str:
+        """FIX and ACCENTS dictionaries work with words (\bword\b)
+        but SPIRITS and DIAERESIS work with characters.
+        """
+        word = m.group(0)
         if word in subdict:
             return subdict[word]
-        else:
-            return subdict[key]
+
+        # Do not remove accents from abbreviated words:
+        # > Ἂς πά᾽ νὰ εἶσαι.
+        # > Ας πά᾽ να είσαι.
+        # This has the side effect of not removing accents
+        # when the apostrophe mark is used to quote.
+        if m.end() < len(text) and text[m.end()] in "'᾽":
+            return word
+
+        return subdict[f"\\b{word}\\b"]
 
     text = fix_double_accents(text)
     for subdict in DICTIONARY.values():
